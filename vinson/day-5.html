@@ -5,6 +5,72 @@
     <title>Day-5</title>
 </head>
 <body>
+    <ul>
+        <li>variable declaration
+            <ul>
+                <li>var</li>
+                <li>const</li>
+                <li>let</li>
+            </ul>
+        </li>
+        <li>variable types
+            <ul>
+                <li>primitive
+                    <ul>
+                        <li>string</li>
+                        <li>number</li>
+                        <li>boolean</li>
+                        <li>*symbol</li>
+                        <li>null(*intent)</li>
+                        <li>undefined</li>
+                    </ul>
+                </li>
+                <li>complex
+                    <ul>
+                        <li>object</li>
+                        <li>array</li>
+                        <li>function(callable objects)</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul>function
+        <li>scope</li>
+        <li>closure</li>
+    </ul>
+
+    <button onclick="outerGamble()">press me</button>
+    <div id="total"></div>
+    <script>
+        function myClosure() {
+            var myMoney = 0;
+            function add(value) {
+                myMoney += value;
+                displayMoney();
+            }
+            function displayMoney () {
+                document.getElementById('total').innerText = myMoney;
+                console.log('myMoney', myMoney)
+            }
+            function gamble() {
+                const random = Math.floor(Math.random() * 100) - 50;
+                add(random);
+            }
+            return {
+                gamble: gamble,
+            }
+        }
+        const myObject = myClosure();
+        function outerGamble() {
+            myObject.gamble();
+        }
+
+
+        function myHiddenFunction() {
+            return console.log('works');
+        }
+    </script>
 
 </body>
 </html>
