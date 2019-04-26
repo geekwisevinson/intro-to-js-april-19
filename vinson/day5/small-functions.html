@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    // create my element
+    function createElement() {
+        return document.createElement('div');
+    }
+
+    const myEl = createElement();
+  // color my element;
+    function changeColor(myEl, color) {
+        myEl.style.color = color;
+    }
+    changeColor(myEl, 'red');
+  // put my elemtn on the page
+  document.body.appendChild(myEl);
+  // change the text in my el
+  myEl.innerText = 'something'
+</script>
+
+
+
+</body>
+</html>

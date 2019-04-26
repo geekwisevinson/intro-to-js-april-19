@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    class Visible {
+        myElement = null;
+        color = null;
+        width = 0;
+        height = 0;
+        x = 0;
+        y = 0;
+        constructor(color, width, height, x, y) {
+            this.color = color;
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;
+            this.myElement = document.createElement('div');
+        }
+        draw() {
+            const style = this.myElement.style;
+            style.position = 'absolute';
+            style.backgroundColor = this.color;
+            style.width = this.width + 'px';
+            style.height = this.height + 'px';
+            style.left = this.x + 'px';
+            style.top = this.y + 'px';
+        }
+        append() {
+            document.body.appendChild(this.myElement);
+        }
+    }
+
+    class VisibleWithHealth extends Visible {
+        private;
+        constructor() {
+            super('blue', 100, 50, 400, 200);
+            this.private = this.createPrivateVars()
+        }
+
+
+        draw() {
+            this.myElement.innerText = this.health;
+            const style = this.myElement.style;
+            style.color = 'white';
+            style.position = 'absolute';
+            style.backgroundColor = this.color;
+            style.width = this.width + 'px';
+            style.height = this.height + 'px';
+            style.left = this.x + 'px';
+            style.top = this.y + 'px';
+        }
+
+        createPrivateVars() {
+            var health = 100;
+            return {
+                addHealth: function(value) {
+                    health += value;
+                },
+                getHealth: function() {
+                    return health;
+                }
+            }
+        }
+
+    }
+
+    const myEl = new Visible('red', 100, 100, 300, 500);
+    const myEl2 = new Visible('blue', 200, 200, 600, 200);
+    const vHealth = new VisibleWithHealth();
+    vHealth.append()
+    myEl.append();
+    myEl2.append();
+    console.log(myEl);
+
+    function gameLoop() {
+        myEl.draw();
+        myEl2.draw();
+        vHealth.draw();
+        window.requestAnimationFrame(gameLoop)
+    }
+    gameLoop();
+    window.addEventListener('keyup', function () {
+        myEl.x += 10;
+        myEl2.x += -20;
+    })
+</script>
+
+</body>
+</html>
