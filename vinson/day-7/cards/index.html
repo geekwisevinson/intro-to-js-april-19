@@ -16,21 +16,7 @@
             background-color: white;
             transition: all ease 1s;
             top: 0;
-<<<<<<< HEAD
-            left: 300;
-        }
 
-        [suit=diamonds], [suit=hearts] {
-            color:red;
-        }
-        [suit=clubs], [suit=spades] {
-            color:blue;
-        }
-
-        .placeA {
-            top = 400px;
-            left = 450px;
-=======
             left: 300px;
         }
         [suit=diamonds], [suit=hearts] {
@@ -43,25 +29,16 @@
         .placeA {
             top: 200px;
             left: 450px;
->>>>>>> 144f220674d0da672a53dfd2cff0f1b794811114
             --z: '400px'
         }
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-<button onclick="">Random</button>
-<div id="total"></div>
-<script>
-    const placed = [];
-    const totalElement = document.getElementById(); 
-=======
 <button onclick="randomCard()">Random</button>
 <div id="total"></div>
 <script>
     const placed = [];
     const totalElement = document.getElementById('total');
->>>>>>> 144f220674d0da672a53dfd2cff0f1b794811114
     const suits = ['hearts', 'diamonds', 'spades', 'clubs'];
     const numbers = [
         '2', '3', '4', '5','6', '7','8','9'
@@ -80,13 +57,7 @@
         el.setAttribute('number', card.number);
         const isSpades = card.suit.toUpperCase() === 'SPADES';
         const isAce = card.number === 'A';
-<<<<<<< HEAD
-        el.style.zIndex = index + ' ';
-        
-        
-=======
         el.style.zIndex = index + '';
->>>>>>> 144f220674d0da672a53dfd2cff0f1b794811114
         return el;
     });
 
@@ -98,19 +69,6 @@
         }
 
         console.log(picked);
-<<<<<<< HEAD
-        const n = picked.getAttribute('number');
-        let value = 0;
-        if (['J','K','Q','10'].includes(number)) {
-            value = 10;
-        } else if (number === 'A') {
-            value = confirm('Should this be a 1') ? 1 : 11;
-        } else {
-            value = parseInt(number);
-        }
-        const current = totalElement.innerText = current + value;
-        totalElement.innerText = current ? current + value: value;
-=======
         const number = picked.getAttribute('number');
         let value = testValue(number);
 
@@ -122,17 +80,10 @@
         }
         totalElement.innerText = totalValue;
         console.log('number', number);
->>>>>>> 144f220674d0da672a53dfd2cff0f1b794811114
         const z = document.querySelectorAll('.placeA').length;
         picked.style.zIndex = z + '';
         picked.style.top = 200 + (z * 20) + 'px';
         picked.classList.add('placeA');
-<<<<<<< HEAD
-        placed.push(cards.splice(cards.indexOf(picked),1))
-        
-    }
-
-=======
         placed.push(cards.splice(randomNumber, 1))
     }
 
@@ -158,7 +109,6 @@
         }
         return value;
     }
->>>>>>> 144f220674d0da672a53dfd2cff0f1b794811114
 </script>
 
 </body>
