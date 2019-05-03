@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text"> <button>Submit</button>
+
+<script>
+    function submit() {
+        alert(input.value)
+    }
+    const input = document.querySelector('input');
+    const button = document.querySelector('button');
+    button.addEventListener('click', submit);
+
+    window.addEventListener('keyup', function(e) {
+        console.log('e', e.code);
+        if (e.code === 'Enter') {
+            submit()
+        }
+    })
+</script>
+</body>
+</html>
