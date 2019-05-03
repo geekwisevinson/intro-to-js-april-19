@@ -24,7 +24,7 @@
         }
         [suit=clubs], [suit=spades] {
             color:blue;
-    }
+        }
 
     .placeA {
         top: 200px;
@@ -41,6 +41,7 @@
 
 <script>
     const placed = [];
+    const totalElement = document.getElementById('total');
     const suits = ['hearts', 'diamonds', 'spades', 'clubs'];
     const numbers = [
         '2', '3', '4', '5','6', '7','8','9'
@@ -75,18 +76,12 @@ function randomCard() {
     
     console.log(picked);
     const number = picked.getAttribute('number');
-    let value = testValue
-    if (['J', 'K', 'Q', '10'].includes(n)) {
-        value = 10;
-    } else if (number === "A") {
-        value = confirm('Should this be an 1') ? 1 : 11;
-    } else {
-        value = parseInt(number);
-    }
+    let value = testValue(number);
 
     const current = parseInt(totalElement.innerText);
     const totalValue = current ? current + value: value;
     if (totalValue > 21){
+        alert('Busted');
         totalValue = generateValue(document.querySelectorAll('.placeA'))
     }
     totalElement.innerText = totalValue;
@@ -96,6 +91,12 @@ function randomCard() {
     picked.style.top = 200 + (z * 20) + 'px';
     picked.classList.add('placeA');
     placed.push(cards.splice(randomNumber, 1))
+
+
+
+
+  
+
    
    
 
@@ -103,20 +104,26 @@ function randomCard() {
 
 function generateValue(arr) {
     let answer = 0;
+    debugger;
     arr.forEach( card => {
-        let value = 0;
-        const number = card.getAttribute.
-
-
-
         const number = card.getAttribute('number');
-        if (number === 'A') {
+        let value = testValue(number);
+            answer += value;
+        });
+        return answer;
+    }
+
+    function testValue(number) {
+        let value;
+        if (['J', 'K', 'Q', '10'].includes(number)) {
+            value = 10;
+        } else if (number === "A") {
             value = confirm('Should this be an 1') ? 1 : 11;
         } else {
-
+            value = parseInt(number);
         }
-    })
-}
+        return value;
+    }
 
 </script>
 
