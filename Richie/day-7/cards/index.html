@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: aqua;
+        }
+        .card{ 
+            width: 150px;
+            height: 250px;
+            border:1px solid black;
+            display:inline-block;
+            position:absolute;
+            background-color:wheat;
+        }
+        [suit=diamonds], [suit=hearts] {
+            color:red;
+        }
+        [suit=spades], [suit=clubs] {
+            color:blue;
+        }
+
+        .placeA{
+            top: 200px;
+            left: 450px;
+            --z: '400px'
+        }
+    </style>
+</head>
+<body>
+<button onclick></button> 
+<script>
+    const suits = ['hearts', 'diamonds', 'spades', 'clubs'];
+    const numbers = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+    const cards = suits.map(function(item, index) {
+        return numbers.map(function(number, i){
+            return {suit: item,number: number}
+        })
+    }).flat(2).map(function(card) {
+        const el = document.createElement('div');
+        el.classList.add('card');
+        document.body.appendChild(el); 
+        el.innerHTML = `${card.suit}:${card.number}`
+        console.log('card', card);
+        const isSpades = card.suit.toUpperCase() === 'SPADES';
+        const isAce = card.number === 'A';
+        // // if(isSPADES  && is isAce){
+        
+        // }
+        el.style.zindex = index + '';
+
+        return el;
+    });
+
+        funtion randomcard() v  {
+            const picked = cards[Math.floor(Math.random() * card.length)]
+            console.log(picked);
+            picked.style.zIndex = document.querySelectorAll('.placeA').length + '';
+            picked.style.zIndex = 450 + (z * 10);
+            picked.style.top = ('--z')
+        }
+    console.log('cards',cards);
+    // document.write(JSON.stringify(cards));
+</script>
+
+</body>
+</html>
