@@ -9,4 +9,3 @@ const title = document.createElement("h1");
 title.innerText = 'Scott';
 title.style.textAlign = 'center';
 title.style.fontSize = '10em';
-scottainer.appendChild(title);
