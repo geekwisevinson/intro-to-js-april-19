@@ -1,3 +1,4 @@
+(function () {
 const scottainer = document.createElement('div');
 document.body.appendChild(scottainer);
 scottainer.style.height = '825px';
@@ -9,3 +10,4 @@ const title = document.createElement("h1");
 title.innerText = 'Scott';
 title.style.textAlign = 'center';
 title.style.fontSize = '10em';
+}();
