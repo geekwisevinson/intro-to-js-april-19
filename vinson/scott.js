@@ -15,7 +15,7 @@ scottainer.appendChild(title);
 
 
 const pic = document.createElement("IMG");
-pic.setAttribute("src" , "./me.jpeg");
+pic.setAttribute("src" , "https://avatars2.githubusercontent.com/u/25591987?s=460&v=4");
 pic.setAttribute("height", "225");
 scottainer.appendChild(pic);
 
