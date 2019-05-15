@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body, html {
+            overflow: hidden;
+            height: 100%;
+        }
+        .animal {
+            display: none;
+        }
+        .highlight{
+            display: block;
+            color: lime;
+        }
+    </style>
+</head>
+<body>
+
+<input  id="range" onchange="logRange()" type="range" min="0" max="100">
+
+<input type="text" oninput="checkForAnimal()">
+
+<div style="position: relative;">
+    <img style="position: absolute" src="zoo.jpg" alt="">
+    <h4 id="monkey" class="animal" style="position: absolute; top: 200px; left: 250px">Monkeys</h4>
+    <h4 id="tiger" class="animal" style="position: absolute; top: 220px; left: 280px">Tigers</h4>
+
+    <div style="height: 200px; width: 100vw; background-color: white; position: absolute; top: 440px; left: 0px">
+
+    </div>
+</div>
+
+
+<script>
+    function logRange() {
+        console.log(range.value)
+    }
+
+    function checkForAnimal() {
+        console.log('check')
+        const value = document.querySelector('[type=text]').value;
+        document.querySelectorAll('h4').forEach( animal => {
+            console.log('animal', animal)
+            if (value === animal.id) {
+                animal.classList.add('highlight');
+            } else {
+                animal.classList.remove('highlight');
+            }
+        })
+    }
+</script>
+</body>
+</html>

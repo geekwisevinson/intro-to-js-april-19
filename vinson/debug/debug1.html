@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paint-JS</title>
+    <style type ="text/css">
+        canvas{
+            border:1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+<canvas id="drawArea" width="1000" height="600">
+
+    <script type = 'text/javascript'>
+        var size = prompt('Enter your brush size');
+        var mouseDown = false;
+        var canvas = document.getElementById("drawArea");
+
+        canvas.addEventListener('mousedown', down);
+        canvas.addEventListener('mouseup', toggledraw);
+        canvas.addEventListener('mousemove',
+            function(drawEvent){
+                var mousePos = getMousePos(canvas, drawEvent);
+                var posx = mousePos.x;
+                var posy = mousePos.y;
+                draw(canvas, posx, posy);
+            });
+
+        function down(){
+            mouseDown = true;
+        }
+
+        function toggledraw(){
+            mouseDown = false;
+            canvas.style.cursor="default";
+        }
+
+        function getMousePos(canvas, drawEvent){
+            var rect = canvas.getBoundingClientRect();
+            return{
+                x:drawEvent.clientX - rect.left,
+                y:drawEvent.clientY - rect.top,
+            };
+        }
+
+        function draw(canvas, posx, posy) {
+            var context = canvas.getContext('2d');
+            context.fillStyle = "black";
+            if(mouseDown){
+                canvas.style.cursor="pointer";
+                context.fillRect(posx, posy, size, size);
+
+            }
+        }
+
+    </script>
+</canvas>
+<button onclick='window.location.reload()'>RESET</button>
+</body>
+</html>

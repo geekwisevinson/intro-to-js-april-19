@@ -101,12 +101,12 @@ class Pipe extends Drawable {
         const gapBottom = this.startGap + this.gap;
         const birdTop = this.bInstance.y;
         const birdBottom  = this.bInstance.y + this.bInstance.h;
-
         const notHittingFront = birdRight < pipeLeft;
+        const notHittingBehind = birdRight < pipeLeft;
+
         if (birdRight < pipeLeft) {
             return;
         }
-        const notHittingBehind = birdRight < pipeLeft;
         if (birdLeft > pipeRight) {
             return;
         }

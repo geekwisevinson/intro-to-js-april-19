@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #html, #js {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Home</h1>
+<textarea name="" id="htmlFile" cols="40" rows="10"></textarea>
+<textarea name="" id="jsFile" cols="40" rows="10"></textarea>
+<button onclick="addProject()">Send project</button>
+<button onclick="getUsers()">get users</button>
+<input type="text">
+<button onclick="addUser()">add user</button>
+<div id="users"></div>
+
+<div id="html"></div>
+<div id="js"></div>
+<script>
+    const usersElement = document.getElementById('users')
+    function getUsers() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get-users');
+        xhr.onload = function () {
+            console.log(this.responseText);
+            usersElement.innerText = this.responseText
+        };
+        xhr.send();
+    }
+
+    const usernameInput = document.querySelector('input');
+    function addUser() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'add-user');
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onload = function () {
+            console.log(this.responseText);
+        };
+        const payload = {user: usernameInput.value};
+        xhr.send(JSON.stringify(payload));
+    }
+
+    function addProject() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'add-project');
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onload = function () {
+            console.log(this.responseText);
+        };
+        const payload = {html: document.getElementById('htmlFile').value, js: document.getElementById('jsFile').value};
+        xhr.send(JSON.stringify(payload));
+    }
+
+    function getProject() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get-project');
+        xhr.onload = function () {
+            console.log(this.responseText);
+            document.getElementById('html').innerText = JSON.parse(this.responseText).html;
+            document.getElementById('js').innerText = JSON.parse(this.responseText).js;
+        };
+        xhr.send();
+    }
+
+    setInterval(function () {
+        getUsers();
+        getProject()
+    }, 3000)
+</script>
+</body>
+</html>
