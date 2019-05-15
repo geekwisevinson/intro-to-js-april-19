@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="700"></canvas>
+<img id="background" src="zoo.jpg" alt="">
+<script>
+    const context = canvas.getContext('2d');
+    const background = document.getElementById('background');
+    context.drawImage(background,100, 100, 200, 500,  0, 0, 800, 700)
+</script>
+</body>
+</html>
