@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: aqua;
+        }
+        .card {
+            width: 100px;
+            height: 200px;
+            border: 1px solid black;
+            display: inline-block;
+            position: absolute;
+            background-color: white;
+            transition: all ease 1s;
+            top: 0;
+            left: 300px;
+        }
+        [suit=diamonds], [suit=hearts] {
+            color: red;
+        }
+        [suit=clubs], [suit=spades] {
+            color: blue;
+        }
+
+        .placeA {
+            top: 200px;
+            left: 450px;
+            --z: '400px'
+        }
+    </style>
+</head>
+<body>
+<button onclick="randomCard()">Random</button>
+<div id="total"></div>
+<script>
+    const placed = [];
+    const totalElement = document.getElementById('total');
+    const suits = ['hearts', 'diamonds', 'spades', 'clubs'];
+    const numbers = [
+        '2', '3', '4', '5','6', '7','8','9'
+        , '10', 'J','Q', 'K', 'A'];
+    const cards = suits.map(function(item, index) {
+        return numbers.map(function(number, i){
+            return [{suit: item, number: number}]
+        })
+    }).flat(2).map(function(card, index) {
+        const el = document.createElement('div');
+        el.classList.add('card');
+        document.body.appendChild(el);
+        el.innerHTML = `${card.suit}:${card.number}`;
+        console.log('card', card);
+        el.setAttribute('suit', card.suit);
+        el.setAttribute('number', card.number);
+        const isSpades = card.suit.toUpperCase() === 'SPADES';
+        const isAce = card.number === 'A';
+        el.style.zIndex = index + '';
+        return el;
+    });
+
+    function randomCard() {
+        const randomNumber = Math.floor(Math.random() * cards.length);
+        const picked = cards[randomNumber];
+        if (!picked) {
+            return;
+        }
+
+        console.log(picked);
+        const number = picked.getAttribute('number');
+        let value = testValue(number);
+
+        const current = parseInt(totalElement.innerText);
+        let totalValue = current ? current + value: value;
+        if (totalValue > 21) {
+            alert('Busted');
+            totalValue = generateValue(document.querySelectorAll('.placeA'))
+        }
+        totalElement.innerText = totalValue;
+        console.log('number', number);
+        const z = document.querySelectorAll('.placeA').length;
+        picked.style.zIndex = z + '';
+        picked.style.top = 200 + (z * 20) + 'px';
+        picked.classList.add('placeA');
+        placed.push(cards.splice(randomNumber, 1))
+    }
+
+    function generateValue(arr) {
+        let answer = 0;
+        debugger;
+        arr.forEach( card => {
+            const number = card.getAttribute('number');
+            let value = testValue(number);
+            answer += value;
+        });
+        return answer;
+    }
+
+    function testValue(number) {
+        let value;
+        if (['J', 'K', 'Q', '10'].includes(number)) {
+            value = 10;
+        } else if (number === "A") {
+            value = confirm('Should this be an 1') ? 1 : 11;
+        } else {
+            value = parseInt(number);
+        }
+        return value;
+    }
+</script>
+
+</body>
+</html>
